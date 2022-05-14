@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:update]
+  before_action :ensure_correct_user, only: [:show, :update]
 
   def show
     @user = User.find(params[:id])
@@ -36,7 +36,13 @@ class UsersController < ApplicationController
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user)
+      action = params[:action]
+      flash[:notice] = "No Authorized."
+      if action == 'show'
+        redirect_to users_path
+      elsif action == 'update'
+        redirect_to edit_user_path(current_user)
+      end
     end
   end
 end
