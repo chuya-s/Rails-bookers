@@ -10,4 +10,8 @@ class Book < ApplicationRecord
     Rails.cache.delete('favorites')
     favorites.where(user_id: user.id).exists?
   end
+
+  def favoriteCounts(user)
+    favorites.where(user_id:user.id, book_id:id).count
+  end
 end

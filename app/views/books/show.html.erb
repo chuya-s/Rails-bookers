@@ -30,6 +30,7 @@
               <% end %>
             <% end %>
           </td>
+          <td><%= @book.favoriteCounts(current_user) %></td>
           <% if current_user.present? && current_user.name == @book.user.name  %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
