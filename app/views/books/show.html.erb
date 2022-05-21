@@ -8,21 +8,22 @@
     </div>
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
-  		<table class='table'>
-  		  <tr>
-          <td><%= link_to(@book.user) do %>
-            <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
-            <%= @book.user.name %>
-            <% end %>
-          </td>
-          <td><%= link_to @book.title, @book %></td>
-          <td><%= @book.body %></td>
-          <% if current_user.present? && current_user.name == @book.user.name  %>
-            <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
-            <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
+  		<%= render 'detail', user: current_user %>
+      <h2>Book comment</h2>
+        <table class='table'>
+
+          <% @bookComments.each do |comment| %>
+            <tr>
+              <td>
+                <%= comment.comment %>
+                <% if current_user.present? && current_user.id == comment.user_id  %>
+                  <%= link_to 'Destroy', destroy_book_comment_path(comment.book_id, comment.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@bookComment.id}"%>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-        </tr>
-      </table>
+        </table>
+      <%= render 'book_comments/edit', bookComment: @bookComment, bookId:@book.id %>
     </div>
   </div>
 </div>
