@@ -7,8 +7,9 @@ Rails.application.routes.draw do
 
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
     resource :favorites, only: [:create, :destroy]
-    resource :book_comment, only: [:create, :destroy]
+    resource :book_comment, only: [:create]
   end
+  delete 'books/:book_id/book_comment/:book_comment_id' => 'book_comments#destroy', as:'destroy_book_comment'
 
   resources :users, only: [:index,:show,:edit,:update]
 
