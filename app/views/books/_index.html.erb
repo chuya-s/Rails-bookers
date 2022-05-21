@@ -28,6 +28,7 @@
           <% end %>
           <%= book.favoriteCounts(current_user) %>
         </td>
+        <td>コメント数: <%= book.bookCommentCounts %></td>
       </tr>
     <% end %>
   </tbody>
