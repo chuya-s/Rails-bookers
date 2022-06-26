@@ -1,6 +1,7 @@
 class BookCommentsController < ApplicationController
   def create
-    @bookComment = BookComment.new(book_id:params[:book_id], comment:params[:book_comment])
+    @bookComment = BookComment.new(comment_params)
+    @bookComment.book_id = params[:book_id]
     @bookComment.user_id = current_user.id
     @bookComment.save
     redirect_to request.referer
@@ -13,5 +14,10 @@ class BookCommentsController < ApplicationController
     redirect_to request.referer
   end
 
+  private
+
+  def comment_params
+    params.require(:book_comment).permit(:comment)
+  end
 
 end
