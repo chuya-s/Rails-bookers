@@ -9,6 +9,10 @@ class UsersController < ApplicationController
       @books = @user.books
     end
     @book = Book.new
+    @todayPostCounts = Book.todayPostCounts(@user)
+    @yesterdayPostCounts = Book.yesterdayPostCounts(@user)
+    @thisWeekPostCounts = Book.thisWeekPostCounts(@user)
+    @prevWeekPostCounts = Book.prevWeekPostCounts(@user)
   end
 
   def index
