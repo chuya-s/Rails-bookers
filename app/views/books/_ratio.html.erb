@@ -1,0 +1,44 @@
+<table class='table table-hover table-inverse'>
+  <thead>
+    <tr>
+      <th>今日の投稿数</th>
+      <th>前日の投稿数</th>
+      <th>前日比</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= todayPostCounts %></td>
+        <td><%= yesterdayPostCounts %></td>
+        <td>
+          <% if yesterdayPostCounts > 0 %>
+            <%= (todayPostCounts / yesterdayPostCounts) * 100 %> %
+          <% else %>
+            <%= (todayPostCounts / 1) * 100 %> %
+          <% end %>
+        </td>
+      </tr>
+  </tbody>
+  <thead>
+    <tr>
+      <th>今週の投稿数</th>
+      <th>先週の投稿数</th>
+      <th>前週比</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><%= thisWeekPostCounts %></td>
+        <td><%= prevWeekPostCounts %></td>
+        <td>
+          <% if prevWeekPostCounts > 0 %>
+            <%= (thisWeekPostCounts / prevWeekPostCounts) * 100 %> %
+          <% else %>
+            <%= (thisWeekPostCounts / 1) * 100 %> %
+          <% end %>
+        </td>
+      </tr>
+  </tbody>
+</table>

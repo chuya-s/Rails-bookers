@@ -34,4 +34,20 @@ class Book < ApplicationRecord
     end
   end
 
+  def self.todayPostCounts(user)
+    Book.where(user_id:user.id, created_at: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day).count
+  end
+
+  def self.yesterdayPostCounts(user)
+    Book.where(user_id:user.id, created_at: Time.zone.yesterday.beginning_of_day..Time.zone.yesterday.end_of_day).count
+  end
+
+  def self.thisWeekPostCounts(user)
+    Book.where(user_id:user.id, created_at: Time.zone.today.beginning_of_week..Time.zone.today.end_of_week).count
+  end
+
+  def self.prevWeekPostCounts(user)
+    Book.where(user_id:user.id, created_at: Time.zone.today.prev_week(:monday)..Time.zone.today.prev_week(:sunday)).count
+  end
+
 end
