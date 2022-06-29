@@ -13,9 +13,9 @@
         <td><%= yesterdayPostCounts %></td>
         <td>
           <% if yesterdayPostCounts > 0 %>
-            <%= (todayPostCounts / yesterdayPostCounts) * 100 %> %
+            <%= (todayPostCounts - yesterdayPostCounts) / yesterdayPostCounts * 100 %> %
           <% else %>
-            <%= (todayPostCounts / 1) * 100 %> %
+            <%= (todayPostCounts - yesterdayPostCounts / 1) * 100 %> %
           <% end %>
         </td>
       </tr>
@@ -34,9 +34,9 @@
         <td><%= prevWeekPostCounts %></td>
         <td>
           <% if prevWeekPostCounts > 0 %>
-            <%= (thisWeekPostCounts / prevWeekPostCounts) * 100 %> %
+            <%= (thisWeekPostCounts - prevWeekPostCounts) / prevWeekPostCounts * 100 %> %
           <% else %>
-            <%= (thisWeekPostCounts / 1) * 100 %> %
+            <%= (thisWeekPostCounts - prevWeekPostCounts / 1) * 100 %> %
           <% end %>
         </td>
       </tr>

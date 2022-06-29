@@ -14,6 +14,18 @@
         thisWeekPostCounts: @thisWeekPostCounts,
         prevWeekPostCounts: @prevWeekPostCounts
       %>
+      <h2>Number of posts for 7 days</h2>
+      <%= render 'books/counts',books: @books,
+        sixdaysPostCount: @sixdaysPostCounts,
+        fivedaysPostCount: @fivedaysPostCounts,
+        fourdaysPostCount: @fourdaysPostCounts,
+        threedaysPostCount: @threedaysPostCounts,
+        twodaysPostCount: @twodaysPostCounts,
+        yesterdayPostCounts: @yesterdayPostCounts,
+        todayPostCounts: @todayPostCounts,
+        thisWeekPostCounts: @thisWeekPostCounts,
+        prevWeekPostCounts: @prevWeekPostCounts
+      %>
     </div>
   </div>
 </div>
