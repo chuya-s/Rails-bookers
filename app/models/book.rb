@@ -35,19 +35,39 @@ class Book < ApplicationRecord
   end
 
   def self.todayPostCounts(user)
-    Book.where(user_id:user.id, created_at: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day).count
+    Book.where(user_id:user.id, created_at: Time.current.beginning_of_day..Time.current.end_of_day).count
   end
 
   def self.yesterdayPostCounts(user)
-    Book.where(user_id:user.id, created_at: Time.zone.yesterday.beginning_of_day..Time.zone.yesterday.end_of_day).count
+    Book.where(user_id:user.id, created_at: Time.current.yesterday.beginning_of_day..Time.current.yesterday.end_of_day).count
+  end
+
+  def self.twodaysPostCounts(user)
+    Book.where(user_id:user.id, created_at: 2.days.ago.beginning_of_day..2.days.ago.end_of_day).count
+  end
+
+  def self.threedaysPostCounts(user)
+    Book.where(user_id:user.id, created_at: 3.days.ago.beginning_of_day..3.days.ago.end_of_day).count
+  end
+
+  def self.fourdaysPostCounts(user)
+    Book.where(user_id:user.id, created_at: 4.days.ago.beginning_of_day..4.days.ago.end_of_day).count
+  end
+
+  def self.fivedaysPostCounts(user)
+    Book.where(user_id:user.id, created_at: 5.days.ago.beginning_of_day..5.days.ago.end_of_day).count
+  end
+
+  def self.sixdaysPostCounts(user)
+    Book.where(user_id:user.id, created_at: 6.days.ago.beginning_of_day..6.days.ago.end_of_day).count
   end
 
   def self.thisWeekPostCounts(user)
-    Book.where(user_id:user.id, created_at: Time.zone.today.beginning_of_week..Time.zone.today.end_of_week).count
+    Book.where(user_id:user.id, created_at: Time.current.beginning_of_week..Time.current.end_of_week).count
   end
 
   def self.prevWeekPostCounts(user)
-    Book.where(user_id:user.id, created_at: Time.zone.today.prev_week(:monday)..Time.zone.today.prev_week(:sunday)).count
+    Book.where(user_id:user.id, created_at: Time.current.prev_week(:monday)..Time.current.prev_week(:sunday)).count
   end
 
 end
