@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def show
+    logger.debug("user_controller:show")
     # user, following/follower
     @user = User.find(params[:id])
     @following_users = @user.following_user
@@ -19,6 +20,8 @@ class UsersController < ApplicationController
     @fourdaysPostCounts = Book.fourdaysPostCounts(@user)
     @fivedaysPostCounts = Book.fivedaysPostCounts(@user)
     @sixdaysPostCounts = Book.sixdaysPostCounts(@user)
+    @postCounts = [@sixdaysPostCounts, @fivedaysPostCounts, @fourdaysPostCounts, @threedaysPostCounts, @twodaysPostCounts, @yesterdayPostCounts, @todayPostCounts]
+    logger.debug(@postCounts)
     @thisWeekPostCounts = Book.thisWeekPostCounts(@user)
     @prevWeekPostCounts = Book.prevWeekPostCounts(@user)
   end
