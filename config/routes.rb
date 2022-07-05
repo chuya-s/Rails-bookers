@@ -3,15 +3,15 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
   devise_for :users
-  get 'home/about'=>'homes#about'
+  get 'home/about' => 'homes#about'
 
-  resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
+  resources :books, only: [:index, :show, :edit, :create, :destroy, :update] do
     resource :favorites, only: [:create, :destroy]
     resource :book_comment, only: [:create]
   end
-  delete 'books/:book_id/book_comment/:book_comment_id' => 'book_comments#destroy', as:'destroy_book_comment'
+  delete 'books/:book_id/book_comment/:book_comment_id' => 'book_comments#destroy', as: 'destroy_book_comment'
 
-  resources :users, only: [:index,:show,:edit,:update] do
+  resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :follows, :followers
       get "search", to: "users#search"
