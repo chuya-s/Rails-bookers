@@ -1,5 +1,4 @@
 class SearchesController < ApplicationController
-
   def search
     @word = params[:word]
     @range = params[:range]
@@ -10,5 +9,4 @@ class SearchesController < ApplicationController
       @book = Book.search(search, @word)
     end
   end
-
 end

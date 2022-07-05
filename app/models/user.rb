@@ -15,12 +15,11 @@ class User < ApplicationRecord
   has_many :following_user, through: :follower, source: :followed
   has_many :follower_user, through: :followed, source: :follower
 
-
-  validates :name, presence:true, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction, presence:true, length: { minimum: 5, maximum: 100 }, uniqueness: false
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :introduction, presence: true, length: { minimum: 5, maximum: 100 }, uniqueness: false
 
   def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+    profile_image.attached? ? profile_image : 'no_image.jpg'
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
@@ -33,6 +32,7 @@ class User < ApplicationRecord
     # TODO: not working
     follower.create(followed_id: other_user_id)
   end
+
   # ユーザーをアンフォローする
   def unfollow(user_id)
     follower.find_by(followed_id: other_user.id).destroy
@@ -50,20 +50,20 @@ class User < ApplicationRecord
     logger.debug(search)
     logger.debug(search)
     if search == "forward_match"
-      @user = User.where("name LIKE?","#{word}%")
+      @user = User.where("name LIKE?", "#{word}%")
     elsif search == "backward_match"
-      @user = User.where("name LIKE?","%#{word}")
+      @user = User.where("name LIKE?", "%#{word}")
     elsif search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
     elsif search == "partial_match"
-      @user = User.where("name LIKE?","%#{word}%")
+      @user = User.where("name LIKE?", "%#{word}%")
     else
       @user = User.all
     end
   end
 
   def self.guest
-    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com', introduction: 'guest users') do |user|
+    find_or_create_by!(name: 'guestuser', email: 'guest@example.com', introduction: 'guest users') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
     end
