@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_guest_user, only: [:edit]
 
   def show
     logger.debug("user_controller:show")
@@ -84,6 +85,13 @@ class UsersController < ApplicationController
       elsif action == 'update'
         redirect_to edit_user_path(current_user)
       end
+    end
+  end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
 end
