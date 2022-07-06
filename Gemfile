@@ -57,3 +57,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'image_processing'
 gem 'chart-js-rails', '~> 0.1.7'
+gem 'whenever', require: false
