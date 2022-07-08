@@ -9,6 +9,7 @@
   <tbody>
     <% following_users.each do |user| %>
       <tr>
+        <td><%= image_tag user.profile_image, size: "50x50" if user.profile_image.present? %></td>
         <td><%= user.name %></td>
         <td>フォロー数: <%= user.following_user.count %></td>
         <td>フォロワー数: <%= user.following_user.count %></td>
