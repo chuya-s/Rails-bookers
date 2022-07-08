@@ -1,5 +1,12 @@
 <table class='table'>
   <tr>
+    <td>
+      <% if @book.image.attached? %>
+        <%= image_tag @book.image, size: "50x50" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "50x50" %>
+      <% end %>
+    </td>
     <td><%= link_to(@book.user) do %>
       <%= @book.user.name %>
       <% end %>

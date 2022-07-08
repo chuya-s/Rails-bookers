@@ -9,7 +9,13 @@
   <tbody>
     <% users.each do |user| %>
       <tr>
-        <td><%= image_tag user.profile_image, size: "50x50" if user.profile_image.present? %></td>
+        <td>
+          <% if user.profile_image.attached? %>
+            <%= image_tag user.profile_image, size: "50x50" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "50x50" %>
+          <% end %>
+        </td>
         <td><%= user.name %></td>
         <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
         <td>フォロー数: <%= user.following_user.count %></td>
